@@ -58,9 +58,6 @@ SQLite
 SQL
 Data Collection
 
-The pipeline collects book information from:
-
-https://books.toscrape.com/
 
 The scraper processes multiple catalogue pages and collects at least 60 books across multiple categories.
 

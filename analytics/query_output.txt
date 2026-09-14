@@ -1,0 +1,77 @@
+MODULE 2 — ANALYTICS PIPELINE OUTPUT
+============================================================
+
+Original shape: (891, 15)
+Cleaned shape: (889, 15)
+
+Missing value percentages:
+deck           77.216611
+age            19.865320
+embarked        0.224467
+embark_town     0.224467
+
+Age IQR outlier count: 65
+Fare IQR outlier count: 114
+
+Fare statistics:
+Mean: 32.0967
+Median: 14.4542
+Mode: 8.0500
+Skewness: Fare is right-skewed.
+
+Survival by sex:
+sex
+female    74.04
+male      18.89
+
+Survival by pclass:
+pclass
+1    62.62
+2    47.28
+3    24.24
+
+Survival by sex + pclass:
+sex     pclass
+female  1         96.74
+        2         92.11
+        3         50.00
+male    1         36.89
+        2         15.74
+        3         13.54
+
+Correlation matrix:
+          survived  pclass     age   sibsp   parch    fare
+survived    1.0000 -0.3355 -0.0698 -0.0340  0.0832  0.2553
+pclass     -0.3355  1.0000 -0.3365  0.0817  0.0168 -0.5482
+age        -0.0698 -0.3365  1.0000 -0.2325 -0.1715  0.0937
+sibsp      -0.0340  0.0817 -0.2325  1.0000  0.4145  0.1609
+parch       0.0832  0.0168 -0.1715  0.4145  1.0000  0.2175
+fare        0.2553 -0.5482  0.0937  0.1609  0.2175  1.0000
+
+Two strongest correlations:
+1. pclass vs fare: r=-0.5482, |r|=0.5482
+2. sibsp vs parch: r=0.4145, |r|=0.4145
+
+Classifier metrics:
+                     Accuracy  Precision  Recall      F1     AUC
+Logistic Regression    0.8371     0.8095  0.7500  0.7786  0.8693
+Decision Tree          0.7921     0.8163  0.5882  0.6838  0.8352
+Random Forest          0.8034     0.7538  0.7206  0.7368  0.8287
+
+Imbalance comparison:
+                       Precision  Recall      F1
+Baseline                  0.7538  0.7206  0.7368
+Class Weight Balanced     0.7538  0.7206  0.7368
+SMOTE                     0.7612  0.7500  0.7556
+
+GridSearchCV best parameters:
+{'model__max_depth': 5, 'model__max_features': 'log2', 'model__n_estimators': 100}
+OOB Score: 0.8214
+
+Regression metrics:
+MAE: 16.6924
+RMSE: 39.1215
+R2: 0.4263
+Adjusted R2: 0.2997
+
+Recommended classifier: Logistic Regression
